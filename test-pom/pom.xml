@@ -38,7 +38,7 @@ THE SOFTWARE.
   <packaging>pom</packaging>
 
   <properties>
-    <concurrency>2</concurrency> <!-- may use e.g. 2C for 2 × (number of cores) -->
+    <concurrency>1</concurrency> <!-- may use e.g. 2C for 2 × (number of cores) -->
     <mavenDebug>false</mavenDebug>
     <jacocoSurefireArgs /><!-- empty by default -->
   </properties>
@@ -266,7 +266,8 @@ THE SOFTWARE.
         <artifactId>maven-surefire-plugin</artifactId>
         <!-- version specified in grandparent pom -->
         <configuration>
-          <argLine>${jacocoSurefireArgs} -Dfile.encoding=UTF-8 -Xmx1g -Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+          <argLine>${jacocoSurefireArgs} -Dfile.encoding=UTF-8 -Xmx6g -Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+		  <forkedProcessTimeoutInSeconds>1200</forkedProcessTimeoutInSeconds>
           <systemPropertyVariables>
               <!-- use AntClassLoader that supports predictable file handle release -->
               <hudson.ClassicPluginStrategy.useAntClassLoader>true</hudson.ClassicPluginStrategy.useAntClassLoader>
